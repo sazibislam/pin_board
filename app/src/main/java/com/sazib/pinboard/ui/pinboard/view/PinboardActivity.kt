@@ -3,7 +3,9 @@ package com.sazib.pinboard.ui.pinboard.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sazib.pinboard.R
@@ -12,7 +14,9 @@ import com.sazib.pinboard.ui.pinboard.interactor.PinboardMVPInteractor
 import com.sazib.pinboard.ui.pinboard.presenter.PinboardMVPPresenter
 import com.sazib.pinboard.ui.pinboard.view.adapter.PinboardAdapter
 import com.sazib.pinboard.ui.pinboard.view.model.DataModel
+import kotlinx.android.synthetic.main.activity_pinboard.faBtn
 import kotlinx.android.synthetic.main.activity_pinboard.listPinboard
+import kotlinx.android.synthetic.main.activity_pinboard.nestedScrollView
 import kotlinx.android.synthetic.main.activity_pinboard.toolbarPinboard
 import javax.inject.Inject
 
@@ -49,6 +53,16 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
       }
     }
     //listPinboard.setHasFixedSize(true)
+
+    nestedScrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
+      if (scrollY > 0) {
+        faBtn.visibility = View.VISIBLE
+        faBtn.show()
+      } else {
+        faBtn.visibility = View.INVISIBLE
+        faBtn.hide()
+      }
+    }
 
   }
 
