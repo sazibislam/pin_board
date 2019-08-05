@@ -6,9 +6,9 @@ import androidx.appcompat.widget.Toolbar
 
 interface MVPView {
 
-  fun showProgress()
+  fun showProgress(): Unit?
 
-  fun hideProgress()
+  fun hideProgress(): Unit?
 
   fun setupToolbar(
     toolbar: Toolbar,

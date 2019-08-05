@@ -48,7 +48,7 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
         setCallback(this@PinboardActivity)
       }
     }
-    listPinboard.setHasFixedSize(true)
+    //listPinboard.setHasFixedSize(true)
 
   }
 
