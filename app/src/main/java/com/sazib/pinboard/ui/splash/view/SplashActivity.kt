@@ -6,7 +6,7 @@ import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import com.sazib.pinboard.R
 import com.sazib.pinboard.ui.base.view.DaggerActivity
 import com.sazib.pinboard.ui.splash.interactor.SplashMVPInteractor
-import com.sazib.pinboard.ui.splash.presentation.SplashMVPPresenter
+import com.sazib.pinboard.ui.splash.presenter.SplashMVPPresenter
 import com.sazib.pinboard.utils.AppConstants
 import javax.inject.Inject
 

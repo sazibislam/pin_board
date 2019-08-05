@@ -1,4 +1,4 @@
-package com.sazib.pinboard.ui.splash.presentation
+package com.sazib.pinboard.ui.splash.presenter
 
 import com.sazib.pinboard.ui.base.presenter.BasePresenter
 import com.sazib.pinboard.ui.splash.interactor.SplashMVPInteractor

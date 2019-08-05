@@ -2,8 +2,8 @@ package com.sazib.pinboard.ui.splash
 
 import com.sazib.pinboard.ui.splash.interactor.SplashInteractor
 import com.sazib.pinboard.ui.splash.interactor.SplashMVPInteractor
-import com.sazib.pinboard.ui.splash.presentation.SplashMVPPresenter
-import com.sazib.pinboard.ui.splash.presentation.SplashPresenter
+import com.sazib.pinboard.ui.splash.presenter.SplashMVPPresenter
+import com.sazib.pinboard.ui.splash.presenter.SplashPresenter
 import com.sazib.pinboard.ui.splash.view.SplashMVPView
 import dagger.Module
 import dagger.Provides
