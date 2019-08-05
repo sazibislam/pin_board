@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import com.sazib.pinboard.R
 import com.sazib.pinboard.ui.base.view.DaggerActivity
+import com.sazib.pinboard.ui.pinboard.view.PinboardActivity
 import com.sazib.pinboard.ui.splash.interactor.SplashMVPInteractor
 import com.sazib.pinboard.ui.splash.presenter.SplashMVPPresenter
 import com.sazib.pinboard.utils.AppConstants
@@ -41,8 +42,8 @@ class SplashActivity : DaggerActivity(), SplashMVPView {
 
     private inner class RunSplash internal constructor() : Runnable {
         override fun run() {
-            //startActivity(CityListActivity.getStartIntent(applicationContext))
-            //finishIt()
+          startActivity(PinboardActivity.getStartIntent(applicationContext))
+          finishIt()
         }
     }
 }

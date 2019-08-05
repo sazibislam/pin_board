@@ -17,6 +17,8 @@
 
 
   <string name="no_internet">No Internet</string>
+  <string name="content_description">content description</string>
+  <string name="title">Title</string>
 
 
 </resources>
