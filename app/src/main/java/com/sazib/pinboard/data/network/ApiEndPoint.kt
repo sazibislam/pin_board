@@ -6,6 +6,6 @@ object ApiEndPoint {
 
   private const val BASE_URL = BuildConfig.BASE_URL
 
-  const val ENDPOINT_PINBOARD_DATA = "$BASE_URL/raw"
+  const val ENDPOINT_PINBOARD_DATA = "$BASE_URL/raw/wgkJgazE"
 
 }

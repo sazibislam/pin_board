@@ -10,11 +10,10 @@ class AppApiHelper @Inject constructor(private val mApiHeader: ApiHeader) : ApiH
 
   override fun getApiHeader(): ApiHeader = mApiHeader
 
-  override fun pinboardApiCall(request: PinboardRequest): Observable<PinboardResponse> =
-
-    Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_PINBOARD_DATA)
-            .addHeaders(mApiHeader.authApiHeader)
-            .addQueryParameter(request)
-            .build()
-            .getObjectObservable(PinboardResponse::class.java)
+  override fun pinboardApiCall(request: PinboardRequest): Observable<List<PinboardResponse>> =
+    Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_PINBOARD_DATA)
+        .addHeaders(mApiHeader.authApiHeader)
+        .addQueryParameter(request)
+        .build()
+        .getObjectListObservable(PinboardResponse::class.java)
 }

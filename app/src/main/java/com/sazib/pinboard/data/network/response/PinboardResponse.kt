@@ -4,17 +4,69 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class PinboardResponse internal constructor(
-  @SerializedName("DegreeList") @Expose var degreeList: ArrayList<DegreeList>? = null
+  @SerializedName("id") @Expose var id: String? = null,
+  @SerializedName("created_at") @Expose var created_at: String? = null,
+  @SerializedName("width") @Expose var width: Int? = null,
+  @SerializedName("height") @Expose var height: Int? = null,
+  @SerializedName("color") @Expose var color: String? = null,
+  @SerializedName("likes") @Expose var likes: Int? = null,
+  @SerializedName("liked_by_user") @Expose var liked_by_user: Boolean? = null,
+  @SerializedName("user") @Expose var userList: ArrayList<UserData>? = null,
+  @SerializedName(
+      "current_user_collections"
+  ) @Expose var categories: ArrayList<Categories>? = null,
+  @SerializedName("urls") @Expose var urlsList: ArrayList<UrlsList>? = null,
+  @SerializedName("links") @Expose var linksList: ArrayList<LinksList>? = null
 ) {
-  data class DegreeList internal constructor(
-    @SerializedName("id") @Expose var id: Int? = null,
-    @SerializedName("degree_name") @Expose var degreeName: String? = null,
-    @SerializedName("description") @Expose var description: String? = null,
-    @SerializedName("status") @Expose var status: Int? = null,
-    @SerializedName("created_by") @Expose var createdBy: Int? = null,
-    @SerializedName("updated_by") @Expose var updatedBy: Int? = null,
-    @SerializedName("deleted_at") @Expose var deletedAt: String? = null,
-    @SerializedName("created_at") @Expose var createdAt: String? = null,
-    @SerializedName("updated_at") @Expose var updatedAt: String? = null
+  data class UserData internal constructor(
+    @SerializedName("id") @Expose var id: String? = null,
+    @SerializedName("username") @Expose var username: String? = null,
+    @SerializedName("name") @Expose var name: String? = null,
+    @SerializedName("profile_image") @Expose var profile_image: ArrayList<ProfileImage>? = null,
+    @SerializedName("links") @Expose var links: ArrayList<ProfileLinks>? = null
+  )
+
+  data class UrlsList(
+    @SerializedName("raw") @Expose var raw: String? = null,
+    @SerializedName("full") @Expose var full: String? = null,
+    @SerializedName("regular") @Expose var regular: String? = null,
+    @SerializedName("small") @Expose var small: String? = null,
+    @SerializedName("thumb") @Expose var thumb: String? = null
+  )
+
+  data class LinksList(
+    @SerializedName("self") @Expose var id: String? = null,
+    @SerializedName("html") @Expose var html: String? = null,
+    @SerializedName("download") @Expose var download: String? = null
+  )
+
+  data class ProfileImage(
+    @SerializedName("small") @Expose var small: String? = null,
+    @SerializedName("medium") @Expose var medium: String? = null,
+    @SerializedName("large") @Expose var large: String? = null
+  )
+
+  data class ProfileLinks(
+    @SerializedName("self") @Expose var self: String? = null,
+    @SerializedName("html") @Expose var html: String? = null,
+    @SerializedName("photos") @Expose var photos: String? = null,
+    @SerializedName("likes") @Expose var likes: String? = null
+  )
+
+  data class Categories(
+    @SerializedName("id") @Expose var id: String? = null,
+    @SerializedName("title") @Expose var title: String? = null,
+    @SerializedName("photo_count") @Expose var photo_count: Int? = null,
+    @SerializedName(
+        "links"
+    ) @Expose var currentUserCollectionsLinks: ArrayList<CollectionsLinks>? = null
+  )
+
+  data class CollectionsLinks(
+    @SerializedName("self") @Expose var self: String? = null,
+    @SerializedName("photos") @Expose var photos: String? = null
   )
 }
+
+
+

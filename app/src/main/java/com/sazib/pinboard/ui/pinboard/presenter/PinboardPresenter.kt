@@ -1,5 +1,6 @@
 package com.sazib.pinboard.ui.pinboard.presenter
 
+import com.androidnetworking.error.ANError
 import com.sazib.pinboard.data.network.request.PinboardRequest
 import com.sazib.pinboard.ui.base.presenter.BasePresenter
 import com.sazib.pinboard.ui.pinboard.interactor.PinboardMVPInteractor
@@ -24,10 +25,11 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
 
     getView()?.setupData(AppDataUtils.getPinBoardData())
 
+    getData()
   }
 
   override fun getData() {
-
+    getView()?.showProgress()
     getView()?.apply {
       if (!isNetworkConnected()) return
       interactor?.apply {
@@ -36,7 +38,16 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
                 //PinboardRequest(getToken()),
                 PinboardRequest("")
             ).compose(SchedulerProvider().ioToMainObservableScheduler())
-                .subscribe({ response -> AppLogger.d(response) }, { })
+                .subscribe({ response ->
+                  getView()?.hideProgress()
+                  response?.let { data_ -> AppLogger.d(data_) }
+                  AppLogger.d(response)
+                }, { throwable ->
+                  run {
+                    val anError = throwable as ANError
+                    handleApiError(anError)
+                  }
+                })
         )
       }
     }

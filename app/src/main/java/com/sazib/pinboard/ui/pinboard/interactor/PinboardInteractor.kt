@@ -13,6 +13,6 @@ class PinboardInteractor @Inject constructor(
   apiHelper: ApiHelper
 ) : BaseInteractor(preferenceHelper, apiHelper), PinboardMVPInteractor {
 
-  override fun pinBoardApiCall(request: PinboardRequest): Observable<PinboardResponse> =
+  override fun pinBoardApiCall(request: PinboardRequest): Observable<List<PinboardResponse>> =
     apiHelper.pinboardApiCall(request)
 }

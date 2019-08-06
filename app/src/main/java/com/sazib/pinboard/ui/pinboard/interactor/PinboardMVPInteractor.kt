@@ -7,5 +7,5 @@ import io.reactivex.Observable
 
 interface PinboardMVPInteractor : MVPInteractor {
 
-    fun pinBoardApiCall(request: PinboardRequest): Observable<PinboardResponse>
+  fun pinBoardApiCall(request: PinboardRequest): Observable<List<PinboardResponse>>
 }

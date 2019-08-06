@@ -8,6 +8,6 @@ interface ApiHelper {
 
   fun getApiHeader(): ApiHeader
 
-  fun pinboardApiCall(request: PinboardRequest): Observable<PinboardResponse>
+  fun pinboardApiCall(request: PinboardRequest): Observable<List<PinboardResponse>>
 
 }
