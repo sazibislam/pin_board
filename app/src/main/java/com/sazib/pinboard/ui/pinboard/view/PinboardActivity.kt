@@ -58,10 +58,15 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
       if (scrollY > 0) {
         faBtn.visibility = View.VISIBLE
         faBtn.show()
+        //presenter.getData()
       } else {
         faBtn.visibility = View.INVISIBLE
         faBtn.hide()
       }
+    }
+
+    faBtn.setOnClickListener {
+      nestedScrollView.fullScroll(View.FOCUS_UP)
     }
 
   }

@@ -33,7 +33,8 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
       interactor?.apply {
         compositeDisposable.add(
             pinBoardApiCall(
-                PinboardRequest(getUserId())
+                //PinboardRequest(getToken()),
+                PinboardRequest("")
             ).compose(SchedulerProvider().ioToMainObservableScheduler())
                 .subscribe({ response -> AppLogger.d(response) }, { })
         )

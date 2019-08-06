@@ -10,8 +10,4 @@ interface PreferenceHelper {
 
   fun setUserId(userId: String)
 
-  fun getAppId(): String?
-
-  fun setAppId(id: String)
-
 }
