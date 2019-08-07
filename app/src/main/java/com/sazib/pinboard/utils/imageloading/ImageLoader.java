@@ -101,8 +101,7 @@ public class ImageLoader implements ComponentCallbacks2 {
         connection.setDoInput(true);
         connection.connect();
         InputStream input = connection.getInputStream();
-        Bitmap myBitmap = BitmapFactory.decodeStream(input);
-        return myBitmap;
+        return BitmapFactory.decodeStream(input);
       } catch (IOException e) {
         AppLogger.d(e);
         return null;
