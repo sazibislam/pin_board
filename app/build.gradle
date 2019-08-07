@@ -61,8 +61,6 @@ android {
 }
 
 dependencies {
-
-
   implementation fileTree(include: ['*.jar'], dir: 'libs')
 
   // kotlin
@@ -103,6 +101,10 @@ dependencies {
 
   // parser
   implementation "com.google.code.gson:gson:$rootProject.gson"
+
+  // font
+  implementation "io.github.inflationx:calligraphy3:$rootProject.calligraphy3"
+  implementation "io.github.inflationx:viewpump:$rootProject.viewpump"
 
   // logger
   implementation "com.jakewharton.timber:timber:$rootProject.timber"

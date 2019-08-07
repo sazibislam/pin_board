@@ -15,3 +15,5 @@ internal fun ImageView.loadResourceImage(resource: Int) {
       .fitCenter()
       .into(this)
 }*/
+
+
