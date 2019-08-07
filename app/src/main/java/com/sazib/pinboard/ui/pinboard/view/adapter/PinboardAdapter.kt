@@ -5,12 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sazib.pinboard.R
+import com.sazib.pinboard.data.network.response.PinboardResponse
 import com.sazib.pinboard.ui.base.view.BaseViewHolder
-import com.sazib.pinboard.ui.pinboard.view.model.DataModel
+import com.sazib.pinboard.utils.logger.AppLogger
 import kotlinx.android.synthetic.main.list_item_pinboard.view.ivPinboard
 import kotlinx.android.synthetic.main.list_item_pinboard.view.tvTitle
 
-class PinboardAdapter(private var data: MutableList<DataModel> = ArrayList()) :
+class PinboardAdapter(private var data: MutableList<PinboardResponse> = ArrayList()) :
     RecyclerView.Adapter<BaseViewHolder>() {
 
   private var callback: Callback? = null
@@ -31,8 +32,13 @@ class PinboardAdapter(private var data: MutableList<DataModel> = ArrayList()) :
       )
   )
 
-  internal fun addDataToList(data: List<DataModel>) {
+  internal fun addDataToList(data: List<PinboardResponse>) {
     this.data.clear()
+    this.data.addAll(data)
+    notifyDataSetChanged()
+  }
+
+  internal fun _addDataToList(data: List<PinboardResponse>) {
     this.data.addAll(data)
     notifyDataSetChanged()
   }
@@ -52,14 +58,18 @@ class PinboardAdapter(private var data: MutableList<DataModel> = ArrayList()) :
     override fun onBind(position: Int) {
       val model = data[position]
 
-      model.title?.let { title_ -> itemView.tvTitle.text = title_ }
-      model.image?.let { image_ -> itemView.ivPinboard.setImageResource(image_) }
+      model.userList?.name?.let { name_ ->
+        itemView.tvTitle.text = name_
+        AppLogger.d(name_)
+      }
+      //model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.setImageResource(image_) }
+      //model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.setImageResource(image_) }
 
       itemView.setOnClickListener { callback?.onClick(model) }
     }
   }
 
   interface Callback {
-    fun onClick(data: DataModel)
+    fun onClick(data: PinboardResponse)
   }
 }

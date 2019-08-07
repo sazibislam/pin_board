@@ -9,11 +9,11 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sazib.pinboard.R
+import com.sazib.pinboard.data.network.response.PinboardResponse
 import com.sazib.pinboard.ui.base.view.DaggerActivity
 import com.sazib.pinboard.ui.pinboard.interactor.PinboardMVPInteractor
 import com.sazib.pinboard.ui.pinboard.presenter.PinboardMVPPresenter
 import com.sazib.pinboard.ui.pinboard.view.adapter.PinboardAdapter
-import com.sazib.pinboard.ui.pinboard.view.model.DataModel
 import kotlinx.android.synthetic.main.activity_pinboard.faBtn
 import kotlinx.android.synthetic.main.activity_pinboard.listPinboard
 import kotlinx.android.synthetic.main.activity_pinboard.nestedScrollView
@@ -76,9 +76,9 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
     super.onDestroy()
   }
 
-  override fun setupData(data: List<DataModel>) = adapter.addDataToList(data)
+  override fun setupData(data: List<PinboardResponse>) = adapter.addDataToList(data)
 
-  override fun onClick(data: DataModel) {
+  override fun onClick(data: PinboardResponse) {
 
   }
 }

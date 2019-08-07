@@ -5,7 +5,6 @@ import com.sazib.pinboard.data.network.request.PinboardRequest
 import com.sazib.pinboard.ui.base.presenter.BasePresenter
 import com.sazib.pinboard.ui.pinboard.interactor.PinboardMVPInteractor
 import com.sazib.pinboard.ui.pinboard.view.PinboardMVPView
-import com.sazib.pinboard.utils.AppDataUtils
 import com.sazib.pinboard.utils.SchedulerProvider
 import com.sazib.pinboard.utils.logger.AppLogger
 import io.reactivex.disposables.CompositeDisposable
@@ -23,7 +22,7 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
     super.onAttach(view)
     getView()?.initView()
 
-    getView()?.setupData(AppDataUtils.getPinBoardData())
+    //getView()?.setupData(AppDataUtils.getPinBoardData())
 
     getData()
   }
@@ -40,8 +39,10 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
             ).compose(SchedulerProvider().ioToMainObservableScheduler())
                 .subscribe({ response ->
                   getView()?.hideProgress()
-                  response?.let { data_ -> AppLogger.d(data_) }
-                  AppLogger.d(response)
+                  response?.let { data_ ->
+                    getView()?.setupData(data_)
+                    AppLogger.d(data_)
+                  }
                 }, { throwable ->
                   run {
                     val anError = throwable as ANError
