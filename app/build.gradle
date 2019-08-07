@@ -84,13 +84,6 @@ dependencies {
   // multi-dex
   implementation "androidx.multidex:multidex:$rootProject.multidex"
 
-  // google
-  implementation 'com.google.firebase:firebase-core:17.0.1'
-  implementation 'com.google.firebase:firebase-messaging:19.0.1'
-  implementation 'com.google.firebase:firebase-iid:19.0.1'
-  implementation 'android.arch.work:work-runtime:1.0.1'
-  implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-
   // network
   implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2androidnetworking"
 
@@ -111,17 +104,8 @@ dependencies {
   // parser
   implementation "com.google.code.gson:gson:$rootProject.gson"
 
-  // font
-  implementation "io.github.inflationx:calligraphy3:$rootProject.calligraphy3"
-  implementation "io.github.inflationx:viewpump:$rootProject.viewpump"
-
-  // image
-  implementation "com.github.bumptech.glide:glide:$rootProject.glide"
-  kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
-
   // logger
   implementation "com.jakewharton.timber:timber:$rootProject.timber"
-
 
   // rx-permissions
   implementation "com.github.tbruyelle:rxpermissions:$rootProject.rxpermissions"
@@ -129,11 +113,6 @@ dependencies {
   // androidx room database
   implementation "androidx.room:room-rxjava2:$room"
   kapt "androidx.room:room-compiler:$room"
-
-  // Android Debug Database
-  debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
-
-
 
   // android kotlin extension
   implementation "androidx.core:core-ktx:$rootProject.ktx"
