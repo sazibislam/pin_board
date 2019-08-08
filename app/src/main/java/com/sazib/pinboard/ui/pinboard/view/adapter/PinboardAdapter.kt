@@ -63,7 +63,7 @@ class PinboardAdapter(private var data: MutableList<PinboardResponse> = ArrayLis
         AppLogger.d(name_)
       }
       //model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.setImageResource(image_) }
-      model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.loadImage(image_) }
+      model.userList?.profile_image?.large?.let { image_ -> itemView.ivPinboard.loadImage(image_) }
       itemView.setOnClickListener { callback?.onClick(model) }
     }
   }

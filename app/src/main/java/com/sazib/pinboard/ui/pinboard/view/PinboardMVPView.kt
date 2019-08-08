@@ -13,4 +13,6 @@ interface PinboardMVPView : MVPView {
 
   fun getDefultDir(): Pair<DirPath, FileName>
 
+  fun _setupData(data: List<PinboardResponse>)
+
 }

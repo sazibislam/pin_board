@@ -22,6 +22,10 @@ internal fun ANImageView.loadImage(url: String) {
   setImageUrl(url)
 }
 
+/**
+ * Load image with url and set to the imageView
+ * Default error image set
+ * **/
 internal fun ImageView.loadImage(
   url: String,
   errorRes: Int = R.drawable.ic_warning
@@ -29,6 +33,10 @@ internal fun ImageView.loadImage(
   ImageLoading(context).display(url, this, errorRes)
 }
 
+/**
+ * Load image with image resource
+ * Default warning image set
+ * **/
 internal fun ImageView.loadResourceImage(
   resource: Int,
   errorRes: Int = R.drawable.ic_warning
@@ -38,15 +46,21 @@ internal fun ImageView.loadResourceImage(
 
 class ImageLoading(context: Context) : ComponentCallbacks2 {
 
-  private val cache: TCLruCache
+  private val cache: ImageLruCache
 
+  /**
+   * Check the available memory left, max memory.
+   * **/
   init {
     val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     val maxKb = am.memoryClass * 1024
     val limitKb = maxKb / 8 // 1/8th of total ram
-    cache = TCLruCache(limitKb)
+    cache = ImageLruCache(limitKb)
   }
 
+  /**
+   * Load image with url fron the LRU cache memory and set to the imageView
+   * **/
   fun display(
     url: String,
     imageview: ImageView,
@@ -63,8 +77,14 @@ class ImageLoading(context: Context) : ComponentCallbacks2 {
 
   override fun onConfigurationChanged(newConfig: Configuration) {}
 
+  /***
+   * Checking memory size
+   * */
   override fun onLowMemory() {}
 
+  /***
+   * Reducing cache size
+   * */
   override fun onTrimMemory(level: Int) {
     if (level >= ComponentCallbacks2.TRIM_MEMORY_MODERATE) {
       cache.evictAll()
@@ -73,14 +93,13 @@ class ImageLoading(context: Context) : ComponentCallbacks2 {
     }
   }
 
-  private inner class TCLruCache(maxSize: Int) : LruCache<String, Bitmap>(maxSize) {
+  private inner class ImageLruCache(maxSize: Int) : LruCache<String, Bitmap>(maxSize) {
 
     override fun sizeOf(
       key: String,
       value: Bitmap
     ): Int {
       return value.byteCount / 1024
-      //return super.sizeOf(key, value);
     }
   }
 
@@ -111,6 +130,9 @@ class ImageLoading(context: Context) : ComponentCallbacks2 {
       super.onPostExecute(result)
     }
 
+    /**
+     * Get Bitmap from url
+     * **/
     private fun getBitmapFromURL(src: String): Bitmap? {
       try {
         val url = URL(src)

@@ -17,7 +17,10 @@ import java.io.IOException
 import java.nio.charset.Charset
 
 object FileUtils {
-
+  /**
+   * Get the Directory path
+   * Note that here file saves as .pdf
+   * **/
   fun getDerectoryInfo(context: Context): Pair<DirPath, FileName> {
     val folderName = "PINBOARD"
     val fileName =
@@ -43,6 +46,9 @@ object FileUtils {
         }
   }
 
+  /**
+   * For browsing the the file from the storage
+   * **/
   fun browseDocuments(appCompatActivity: AppCompatActivity) {
     val mimeTypes =
       arrayOf("application/msword", "text/plain", "application/pdf", "application/zip")
@@ -64,6 +70,9 @@ object FileUtils {
     appCompatActivity.startActivityForResult(Intent.createChooser(intent, "ChooseFile"), 100)
   }
 
+  /**
+   * Save image to the storage
+   * **/
   fun saveImage(
     context: Context,
     scaledBitmap: Bitmap,
@@ -84,6 +93,9 @@ object FileUtils {
     }
   }
 
+  /**
+   * Get image from the storage
+   * **/
   fun getImage(
     activity: Activity,
     imageName: String
@@ -96,6 +108,9 @@ object FileUtils {
     return null
   }
 
+  /**
+   * Checking if the file exists or not
+   * **/
   fun isFileExist(
     context: Context,
     argName: String
@@ -110,6 +125,9 @@ object FileUtils {
     return f.exists()
   }
 
+  /**
+   * Checking if the path exists or not
+   * **/
   private fun dirExists(directory_path: String): Boolean {
     var isExist = false
     val directory = File(directory_path)
@@ -119,6 +137,10 @@ object FileUtils {
     return isExist
   }
 
+  /**
+   * Checking if the Folder exists or not
+   * if the folder does not exist then it creates folder
+   * **/
   private fun isFolderExist(context: Context): Boolean {
     val dirPath =
       Environment.getExternalStorageDirectory().toString() + "//" + context.packageName + "//"
@@ -129,6 +151,9 @@ object FileUtils {
     return dirExists(dirPath)
   }
 
+  /**
+   * For deleting file from the storage
+   * **/
   fun deleteFile(
     context: Context,
     argImageName: String

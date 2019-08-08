@@ -4,5 +4,5 @@ import com.sazib.pinboard.ui.base.view.MVPView
 
 interface SplashMVPView : MVPView {
 
-  fun start(isLoggedIn: Boolean)
+  fun start()
 }

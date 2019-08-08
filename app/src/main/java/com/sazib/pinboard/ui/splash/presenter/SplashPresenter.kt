@@ -17,6 +17,6 @@ class SplashPresenter<V : SplashMVPView, I : SplashMVPInteractor> @Inject intern
 
   override fun onAttach(view: V?) {
     super.onAttach(view)
-    getView()?.start(true)
+    getView()?.start()
   }
 }

@@ -24,10 +24,14 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
 
     //getView()?.setupData(AppDataUtils.getPinBoardData())
 
-    getData()
+    //initial request
+    getData(initRequest = true)
   }
 
-  override fun getData() {
+  /**
+   * For requesting data
+   * */
+  override fun getData(initRequest: Boolean) {
     getView()?.showProgress()
     getView()?.apply {
       if (!isNetworkConnected()) return
@@ -41,6 +45,11 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
                   getView()?.hideProgress()
                   response?.let { data_ ->
                     getView()?.setupData(data_)
+                    //for setup data to adapter before/after initial request
+                    /*when (initRequest) {
+                      true -> getView()?.setupData(data_)
+                      else -> getView()?._setupData(data_)
+                    }*/
                     AppLogger.d(data_)
                   }
                 }, { throwable ->
@@ -54,6 +63,9 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
     }
   }
 
+  /**
+   * For downloading any file or image
+   * */
   override fun download(url: String) {
     getView()?.let { view ->
       view.showProgress()

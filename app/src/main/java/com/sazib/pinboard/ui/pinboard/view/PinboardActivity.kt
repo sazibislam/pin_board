@@ -26,9 +26,7 @@ import javax.inject.Inject
 class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Callback {
 
   @Inject lateinit var presenter: PinboardMVPPresenter<PinboardMVPView, PinboardMVPInteractor>
-
   @Inject lateinit var layoutManager: GridLayoutManager
-
   @Inject lateinit var adapter: PinboardAdapter
 
   companion object {
@@ -41,9 +39,11 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
     window.setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN)
     setContentView(R.layout.activity_pinboard)
     presenter.onAttach(this)
-
   }
 
+  /**
+   * Instantiation of adapter, layoutManager, itemAnimator and Floating button
+   * **/
   override fun initView() {
 
     setupToolbar(toolbarPinboard, "Pinboard")
@@ -55,34 +55,57 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
         setCallback(this@PinboardActivity)
       }
     }
-    //listPinboard.setHasFixedSize(true)
+    listPinboard.setHasFixedSize(true)
 
+    /**
+     * when someone scroll view then Floating button visible
+     * And another will happen request and image data will be added to adapter
+     * **/
     nestedScrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
       if (scrollY > 0) {
         faBtn.visibility = View.VISIBLE
         faBtn.show()
-        //presenter.getData()
+        //presenter.getData(initRequest = false)
       } else {
         faBtn.visibility = View.INVISIBLE
         faBtn.hide()
       }
     }
 
+    /**
+     * Floating button on click listner perform
+     * **/
     faBtn.setOnClickListener {
       nestedScrollView.fullScroll(View.FOCUS_UP)
     }
-
   }
 
+  /**
+   * Destroying the presenter
+   * **/
   override fun onDestroy() {
     presenter.onDetach()
     super.onDestroy()
   }
 
+  /**
+   * Before initial request data added to adapter
+   * **/
   override fun setupData(data: List<PinboardResponse>) = adapter.addDataToList(data)
 
+  /**
+   * After initial request data added to adapter
+   * **/
+  override fun _setupData(data: List<PinboardResponse>) = adapter._addDataToList(data)
+
+  /**
+   * Get the directory and file name
+   * **/
   override fun getDefultDir(): Pair<DirPath, FileName> = FileUtils.getDerectoryInfo(this)
 
+  /**
+   * Perform Click Callback from adapter
+   * **/
   override fun onClick(data: PinboardResponse) {
 
   }
