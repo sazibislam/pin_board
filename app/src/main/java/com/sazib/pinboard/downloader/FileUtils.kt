@@ -1,4 +1,4 @@
-package com.sazib.pinboard.utils.downloader
+package com.sazib.pinboard.downloader
 
 import android.app.Activity
 import android.content.Context

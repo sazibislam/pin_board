@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sazib.pinboard.R
 import com.sazib.pinboard.data.network.response.PinboardResponse
+import com.sazib.pinboard.downloader.loadImage
 import com.sazib.pinboard.ui.base.view.BaseViewHolder
 import com.sazib.pinboard.utils.logger.AppLogger
 import kotlinx.android.synthetic.main.list_item_pinboard.view.ivPinboard
@@ -63,7 +64,11 @@ class PinboardAdapter(private var data: MutableList<PinboardResponse> = ArrayLis
         AppLogger.d(name_)
       }
       //model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.setImageResource(image_) }
-      //model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.setImageResource(image_) }
+      model.userList?.profile_image?.medium?.let { image_ ->
+
+        itemView.ivPinboard.loadImage(image_)
+
+      }
 
       itemView.setOnClickListener { callback?.onClick(model) }
     }

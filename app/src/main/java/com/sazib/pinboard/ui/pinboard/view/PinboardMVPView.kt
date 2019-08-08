@@ -1,9 +1,9 @@
 package com.sazib.pinboard.ui.pinboard.view
 
 import com.sazib.pinboard.data.network.response.PinboardResponse
+import com.sazib.pinboard.downloader.DirPath
+import com.sazib.pinboard.downloader.FileName
 import com.sazib.pinboard.ui.base.view.MVPView
-import com.sazib.pinboard.utils.downloader.DirPath
-import com.sazib.pinboard.utils.downloader.FileName
 
 interface PinboardMVPView : MVPView {
 

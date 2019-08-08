@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sazib.pinboard.R
 import com.sazib.pinboard.data.network.response.PinboardResponse
+import com.sazib.pinboard.downloader.DirPath
+import com.sazib.pinboard.downloader.FileName
+import com.sazib.pinboard.downloader.FileUtils
 import com.sazib.pinboard.ui.base.view.DaggerActivity
 import com.sazib.pinboard.ui.pinboard.interactor.PinboardMVPInteractor
 import com.sazib.pinboard.ui.pinboard.presenter.PinboardMVPPresenter
 import com.sazib.pinboard.ui.pinboard.view.adapter.PinboardAdapter
-import com.sazib.pinboard.utils.downloader.DirPath
-import com.sazib.pinboard.utils.downloader.FileName
-import com.sazib.pinboard.utils.downloader.FileUtils
 import kotlinx.android.synthetic.main.activity_pinboard.faBtn
 import kotlinx.android.synthetic.main.activity_pinboard.listPinboard
 import kotlinx.android.synthetic.main.activity_pinboard.nestedScrollView

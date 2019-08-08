@@ -1,4 +1,4 @@
-package com.sazib.pinboard.utils.downloader;
+package com.sazib.pinboard.downloader;
 
 import android.app.ActivityManager;
 import android.content.ComponentCallbacks2;
@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ImageLoader implements ComponentCallbacks2 {
+
   private TCLruCache cache;
 
   public ImageLoader(Context context) {
