@@ -135,7 +135,6 @@ abstract class BaseActivity : AppCompatActivity() {
   }
 
   fun openActivityOnTokenExpire() {
-    //startActivity(LoginActivity.getStartIntent(this))
     finish()
   }
 
@@ -255,10 +254,6 @@ abstract class BaseActivity : AppCompatActivity() {
     okListener: DialogInterface.OnClickListener
   ) {
     makeAlert(null, getString(message), okListener, null)
-  }
-
-  fun onAttachFragment() {
-
   }
 
   internal inner class FinishAction : DialogInterface.OnClickListener {
