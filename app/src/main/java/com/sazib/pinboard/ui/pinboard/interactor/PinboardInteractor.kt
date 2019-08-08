@@ -15,4 +15,11 @@ class PinboardInteractor @Inject constructor(
 
   override fun pinBoardApiCall(request: PinboardRequest): Observable<List<PinboardResponse>> =
     apiHelper.pinboardApiCall(request)
+
+  override fun downloadFile(
+    url: String,
+    dirPath: String,
+    fileName: String
+  ): Observable<String> = apiHelper.downloadFile(url, dirPath, fileName)
+
 }

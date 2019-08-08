@@ -16,4 +16,14 @@ class AppApiHelper @Inject constructor(private val mApiHeader: ApiHeader) : ApiH
         .addQueryParameter(request)
         .build()
         .getObjectListObservable(PinboardResponse::class.java)
+
+  override fun downloadFile(
+    url: String,
+    dirPath: String,
+    fileName: String
+  ): Observable<String> =
+    Rx2AndroidNetworking.download(url, dirPath, fileName)
+        .addHeaders(mApiHeader.authApiHeader)
+        .build()
+        .downloadObservable
 }

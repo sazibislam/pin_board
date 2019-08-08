@@ -53,4 +53,28 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
       }
     }
   }
+
+  override fun download(url: String) {
+    getView()?.let { view ->
+      view.showProgress()
+      val info = view.getDefultDir()
+      interactor?.apply {
+        compositeDisposable.add(
+            downloadFile(url, info.first.path, info.second.name)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ response ->
+                  view.hideProgress()
+                  response?.let { message -> view.showMessage(message) }
+                  //.also { view.openPdfFile(info.second.name) }
+                }, { throwable ->
+                  run {
+                    val anError = throwable as ANError
+                    handleApiError(anError)
+                  }
+                })
+        )
+      }
+    }
+  }
+
 }

@@ -7,4 +7,6 @@ import com.sazib.pinboard.ui.pinboard.view.PinboardMVPView
 interface PinboardMVPPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> : MVPPresenter<V, I> {
 
   fun getData()
+
+  fun download(url: String)
 }

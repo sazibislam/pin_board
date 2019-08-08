@@ -1,4 +1,4 @@
-package com.sazib.pinboard.utils.imageloading;
+package com.sazib.pinboard.utils.downloader;
 
 import android.app.ActivityManager;
 import android.content.ComponentCallbacks2;
