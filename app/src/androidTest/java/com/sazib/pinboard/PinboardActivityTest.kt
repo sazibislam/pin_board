@@ -45,6 +45,9 @@ class PinboardActivityTest {
             )
         )
     //pressBack()
+
+    /*Espresso.onView(withId(id.faBtn))
+        .perform((ViewActions.click()))*/
   }
 
 }
