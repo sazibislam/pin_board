@@ -25,11 +25,6 @@ class AppModule {
 
   @Provides @Singleton internal fun provideContext(application: Application): Context = application
 
-  /* @Provides @Singleton internal fun provideAppDatabase(context: Context): AppDatabase =
-     Room.databaseBuilder(
-         context.applicationContext, AppDatabase::class.java, AppConstants.DB_NAME
-     ).allowMainThreadQueries().build()*/
-
   @Provides @AppKey internal fun provideAppKey(context: Context): String =
     CertSHA1.getCertificateSHA1(context.applicationContext)
 
@@ -54,14 +49,6 @@ class AppModule {
 
   @Provides @Singleton internal fun provideApiHelper(appApiHelper: AppApiHelper): ApiHelper =
     appApiHelper
-
-/*  @Provides @Singleton
-  internal fun provideHealthArticleRepoHelper(appDatabase: AppDatabase): HealthArticleRepo =
-    HealthArticleRepository(appDatabase.healthArticleDao())
-
-  @Provides @Singleton
-  internal fun provideHealthServiceRepoHelper(appDatabase: AppDatabase): HealthServiceRepo =
-    HealthServiceRepository(appDatabase.healthServiceDao())*/
 
   @Provides internal fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 
