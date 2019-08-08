@@ -53,7 +53,6 @@ class PinboardAdapter(private var data: MutableList<PinboardResponse> = ArrayLis
     override fun clear() {
       itemView.tvTitle.text = ""
       itemView.ivPinboard.setImageDrawable(null)
-
     }
 
     override fun onBind(position: Int) {
@@ -64,12 +63,7 @@ class PinboardAdapter(private var data: MutableList<PinboardResponse> = ArrayLis
         AppLogger.d(name_)
       }
       //model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.setImageResource(image_) }
-      model.userList?.profile_image?.medium?.let { image_ ->
-
-        itemView.ivPinboard.loadImage(image_)
-
-      }
-
+      model.userList?.profile_image?.medium?.let { image_ -> itemView.ivPinboard.loadImage(image_) }
       itemView.setOnClickListener { callback?.onClick(model) }
     }
   }
