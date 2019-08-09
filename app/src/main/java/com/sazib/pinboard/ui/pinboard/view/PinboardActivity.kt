@@ -94,7 +94,7 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
       ) {
         super.onScrolled(recyclerView, dx, dy)
         val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?
-        if (!loading && linearLayoutManager!!.itemCount <= linearLayoutManager.findLastVisibleItemPosition() + 3) {
+        if (!loading && linearLayoutManager!!.itemCount <= linearLayoutManager.findLastVisibleItemPosition() + 2) {
           loading = true
           presenter.getData(false)
         }
