@@ -19,7 +19,10 @@ import com.sazib.pinboard.ui.base.view.DaggerActivity
 import com.sazib.pinboard.ui.pinboard.interactor.PinboardMVPInteractor
 import com.sazib.pinboard.ui.pinboard.presenter.PinboardMVPPresenter
 import com.sazib.pinboard.ui.pinboard.view.adapter.PinboardAdapter
-import kotlinx.android.synthetic.main.activity_pinboard.*
+import kotlinx.android.synthetic.main.activity_pinboard.faBtn
+import kotlinx.android.synthetic.main.activity_pinboard.listPinboard
+import kotlinx.android.synthetic.main.activity_pinboard.nestedScrollView
+import kotlinx.android.synthetic.main.activity_pinboard.toolbarPinboard
 import javax.inject.Inject
 
 class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Callback {
