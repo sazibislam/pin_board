@@ -8,6 +8,8 @@ import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sazib.pinboard.R
 import com.sazib.pinboard.data.network.response.PinboardResponse
 import com.sazib.pinboard.downloader.DirPath
@@ -17,10 +19,7 @@ import com.sazib.pinboard.ui.base.view.DaggerActivity
 import com.sazib.pinboard.ui.pinboard.interactor.PinboardMVPInteractor
 import com.sazib.pinboard.ui.pinboard.presenter.PinboardMVPPresenter
 import com.sazib.pinboard.ui.pinboard.view.adapter.PinboardAdapter
-import kotlinx.android.synthetic.main.activity_pinboard.faBtn
-import kotlinx.android.synthetic.main.activity_pinboard.listPinboard
-import kotlinx.android.synthetic.main.activity_pinboard.nestedScrollView
-import kotlinx.android.synthetic.main.activity_pinboard.toolbarPinboard
+import kotlinx.android.synthetic.main.activity_pinboard.*
 import javax.inject.Inject
 
 class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Callback {
@@ -28,6 +27,8 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
   @Inject lateinit var presenter: PinboardMVPPresenter<PinboardMVPView, PinboardMVPInteractor>
   @Inject lateinit var layoutManager: GridLayoutManager
   @Inject lateinit var adapter: PinboardAdapter
+
+  private var loading = false
 
   companion object {
     fun getStartIntent(context: Context): Intent =
@@ -78,6 +79,24 @@ class PinboardActivity : DaggerActivity(), PinboardMVPView, PinboardAdapter.Call
     faBtn.setOnClickListener {
       nestedScrollView.fullScroll(View.FOCUS_UP)
     }
+
+    /**
+     * Loading data for scrolling
+     * **/
+    listPinboard.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      override fun onScrolled(
+        recyclerView: RecyclerView,
+        dx: Int,
+        dy: Int
+      ) {
+        super.onScrolled(recyclerView, dx, dy)
+        val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?
+        if (!loading && linearLayoutManager!!.itemCount <= linearLayoutManager.findLastVisibleItemPosition() + 3) {
+          loading = true
+          presenter.getData(false)
+        }
+      }
+    })
   }
 
   /**

@@ -44,12 +44,12 @@ class PinboardPresenter<V : PinboardMVPView, I : PinboardMVPInteractor> @Inject 
                 .subscribe({ response ->
                   getView()?.hideProgress()
                   response?.let { data_ ->
-                    getView()?.setupData(data_)
+                    //getView()?.setupData(data_)
                     //for setup data to adapter before/after initial request
-                    /*when (initRequest) {
+                    when (initRequest) {
                       true -> getView()?.setupData(data_)
                       else -> getView()?._setupData(data_)
-                    }*/
+                    }
                     AppLogger.d(data_)
                   }
                 }, { throwable ->
