@@ -7,8 +7,7 @@ import com.sazib.pinboard.utils.AppConstants
 import javax.inject.Inject
 
 class AppPreferenceHelper @Inject constructor(
-  context: Context,
-  @PreferenceInfo prefFileName: String = AppConstants.PREF_NAME
+  context: Context, @PreferenceInfo prefFileName: String = AppConstants.PREF_NAME
 ) : PreferenceHelper {
 
   companion object {
@@ -28,7 +27,6 @@ class AppPreferenceHelper @Inject constructor(
 
   override fun getUserId(): String = mPrefs.getString(PREF_KEY_USER_ID, "") ?: ""
 
-  override fun setUserId(userId: String) =
-    mPrefs.edit().putString(PREF_KEY_USER_ID, userId).apply()
+  override fun setUserId(userId: String) = mPrefs.edit().putString(PREF_KEY_USER_ID, userId).apply()
 
 }
